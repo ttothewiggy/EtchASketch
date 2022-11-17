@@ -1,7 +1,24 @@
 
+// variables
 const container = document.getElementById('grid');
-const DEFAULT_SIZE = 16;
+const DEFAULT_SIZE = 126;
 const default_colour = '#ffffff';
+var randoColour = Math.floor(Math.random()*16777215).toString(16);
+const val = document.getElementById('slider').value;
+
+const slider = document.querySelector('#slider')
+const sliderValue = document.querySelector('.value');
+
+// buttons
+const resetButton = document.getElementById('reset');
+
+// button events
+resetButton.onclick = () => reset();
+
+
+// functions
+
+//function to initially populate grid with div elements
 
 function createGrid(size){
     grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
@@ -10,18 +27,58 @@ function createGrid(size){
     for (let i = 0; i < size * size; i++){
         const gridElement = document.createElement('div');
         gridElement.classList.add('grid-element');
-        gridElement.addEventListener('mouseover', function(event){ event.target});
-        gridElement.addEventListener('mousedown', gridColour);
+        gridElement.addEventListener('mouseover', function(event){ event.target.style.backgroundColor = 'black';});
+        gridElement.addEventListener('mousedown', function(event){ event.target.style.backgroundColor = 'black';});
         grid.appendChild(gridElement);
     };
 };
 
+slider.addEventListener('input', function(){
+    let val = document.getElementById('slider').value;
+    sliderValue.textContent = val;
+    reset();
+    grid.style.gridTemplateColumns = `repeat(${val}, 1fr)`;
+    grid.style.gridTemplateRows = `repeat(${val}, 1fr)`;
+    for (let i = 0; i < val * val; i++){
+        const gridElement = document.createElement('div');
+        gridElement.classList.add('grid-element');
+        gridElement.addEventListener('mouseover', function(event){ event.target.style.backgroundColor = 'black';});
+        gridElement.addEventListener('mousedown', function(event){ event.target.style.backgroundColor = 'black';});
+        grid.appendChild(gridElement);
+    }
+
+})
+
+function randomColour(){
+    reset();
+    var rando = Math.floor(Math.random()*16777215).toString(16);
+    for (let i = 0; i < val * val; i++){
+        const gridElement = document.createElement('div');
+        gridElement.classList.add('grid-element');
+        gridElement.addEventListener('mouseover', function(event){ event.target.style.backgroundColor = "#" + rando;});
+        gridElement.addEventListener('mousedown', function(event){ event.target.style.backgroundColor = "#" + rando;});
+        grid.appendChild(gridElement);
+    };
+    
+    // document.gridElement.style.backgroundColor = "#" + rando;
+}
+
+function userSize(value){
+    // var input = document.getElementById('userInputbox').elements[0].value;
+    // document.getElementById('alert').innerHTML = "The user input is: " + input;
+    
+};
+
+function reset(){
+    grid.innerHTML = '';
+    createGrid(DEFAULT_SIZE);
+};
 // function gridColour(){
     
 // }
 
 window.onload = () => {
-    createGrid(DEFAULT_SIZE)
+    createGrid(DEFAULT_SIZE);
   };
 
 
