@@ -13,6 +13,17 @@
     user-select: none;
   }
 
+  #slider{
+    -webkit-appearance: none;
+    background: black;
+    outline: none;
+    border-radius: 50px;
+}
+
+  button{
+
+}
+
 /* .gridRow {
     border: 1px solid black;
 }
