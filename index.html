@@ -8,9 +8,18 @@
     <title>Etch A Sketch</title>
 </head>
 <body>
-    <header>
-        <button class="randomColour" id="randomColour" onclick="randomColour()">Random Colour</button>
-        <button class="reset" id="reset">Reset</button>
+    
+    <header> 
+        <!-- <button class="randomColour" id="randomColour" onclick="randomColour()">Random Colour</button> -->
+        <div id="buttons">
+            <form id=button-container>
+              <input type="radio" id="black-pen" name="pen" value="black-pen" onclick="selectBlack()"> <label for="black-pen">Black</label>
+              <input type="radio" id="red-pen" name="pen" value="red-pen"> <label for="red-pen">Red</label>
+              <input type="radio" id="blue-pen" name="pen" value="blue-pen"> <label for="blue-pen" onclick="selectBlue()">Blue</label>
+              <input type="radio" id="random" name="pen" value="random" onclick="randomColour()"> <label for="Rainbow">Random</label>
+              <input type="radio" id="eraser" name="pen" value="eraser"> <label for="eraser">Eraser</label>
+              <button class="reset" id="reset">Reset</button>
+            </form>
 
         <div class="userInputArea">
             <p>
@@ -20,6 +29,7 @@
                 </form>
             </p>     
         </div>
+
 
     </header>
     <div class="grid" id="grid"></div>

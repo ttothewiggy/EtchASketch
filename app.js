@@ -4,7 +4,8 @@ const container = document.getElementById('grid');
 const DEFAULT_SIZE = 126;
 const default_colour = '#ffffff';
 var randoColour = Math.floor(Math.random()*16777215).toString(16);
-const val = document.getElementById('slider').value;
+let val2 = document.querySelector('#slider').value;
+//sliderValue.textContent = val2;
 
 const slider = document.querySelector('#slider')
 const sliderValue = document.querySelector('.value');
@@ -33,6 +34,7 @@ function createGrid(size){
     };
 };
 
+// function for slider. It feels very slow, how to speed it up?
 slider.addEventListener('input', function(){
     let val = document.getElementById('slider').value;
     sliderValue.textContent = val;
@@ -49,8 +51,15 @@ slider.addEventListener('input', function(){
 
 })
 
+// function to select random colour. Not working. 
 function randomColour(){
+    //alert("You just selected a random colour!");
+    let val = document.getElementById('slider').value;
+    sliderValue.textContent = val;
     reset();
+    //sliderValue.textContent = val;
+    grid.style.gridTemplateColumns = `repeat(${val}, 1fr)`;
+    grid.style.gridTemplateRows = `repeat(${val}, 1fr)`;
     var rando = Math.floor(Math.random()*16777215).toString(16);
     for (let i = 0; i < val * val; i++){
         const gridElement = document.createElement('div');
@@ -63,6 +72,30 @@ function randomColour(){
     // document.gridElement.style.backgroundColor = "#" + rando;
 }
 
+function selectBlack(){
+    let val = document.getElementById('slider').value;
+    sliderValue.textContent = val;
+    for (let i = 0; i < val * val; i++){
+        const gridElement = document.createElement('div');
+        gridElement.classList.add('grid-element');
+        gridElement.addEventListener('mouseover', function(event){ event.target.style.backgroundColor = "#" + rando;});
+        gridElement.addEventListener('mousedown', function(event){ event.target.style.backgroundColor = "#" + rando;});
+        grid.appendChild(gridElement);
+    };
+}
+
+function selectBlue(){
+    let val = document.getElementById('slider').value;
+    sliderValue.textContent = val;
+    for (let i = 0; i < val * val; i++){
+        const gridElement = document.createElement('div');
+        gridElement.classList.add('grid-element');
+        gridElement.addEventListener('mouseover', function(event){ event.target.style.backgroundColor = 'blue';});
+        gridElement.addEventListener('mousedown', function(event){ event.target.style.backgroundColor = 'blue';});
+        grid.appendChild(gridElement);
+    };
+}
+
 function userSize(value){
     // var input = document.getElementById('userInputbox').elements[0].value;
     // document.getElementById('alert').innerHTML = "The user input is: " + input;
@@ -71,28 +104,16 @@ function userSize(value){
 
 function reset(){
     grid.innerHTML = '';
-    createGrid(DEFAULT_SIZE);
+    createGrid(val2);
 };
-// function gridColour(){
-    
-// }
 
+// creates the grid when the page loads
 window.onload = () => {
     createGrid(DEFAULT_SIZE);
   };
 
 
-// function makeRows(rows, cols ) {
-//     container.style.setProperty('--grid-rows', rows);
-//     container.style.setProperty('--grid-cols', cols);
-//     for (c = 0; c < (rows * cols); c++){
-//         let cell = document.createElement('div');
-//         cell.innerText = (c + 1);
-//         container.appendChild(cell).className = 'grid-item';
-//     } ;
-// };
 
-// makeRows(16, 16);
 
 
 
